@@ -14,6 +14,9 @@ import GarageDetail from "./pages/GarageDetail";
 import Community from "./pages/Community";
 import GarageDashboard from "./pages/GarageDashboard";
 import NotFound from "./pages/NotFound";
+import Towing from "./pages/Towing";
+import Premium from "./pages/Premium";
+import EmergencySOS from "./pages/EmergencySOS";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +36,9 @@ const App = () => (
             <Route path="garages/:id" element={<GarageDetail />} />
             <Route path="community" element={<Community />} />
             <Route path="garage-dashboard" element={<GarageDashboard />} />
+            <Route path="towing" element={<Towing />} />
+            <Route path="premium" element={<Premium />} />
+            <Route path="emergency" element={<EmergencySOS />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

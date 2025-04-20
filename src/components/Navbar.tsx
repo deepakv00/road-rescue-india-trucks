@@ -1,9 +1,8 @@
-
 import { useApp } from "@/contexts/AppContext";
 import { logoutUser } from "@/lib/auth";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Truck, Menu, X, User, MapPin } from "lucide-react";
+import { Truck, Menu, X, User, MapPin, CircleAlert } from "lucide-react";
 import { useState } from "react";
 
 const Navbar = () => {
@@ -23,13 +22,21 @@ const Navbar = () => {
           )}
         </Link>
 
-        {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-4">
           <Link to="/breakdown" className="hover:text-gray-300">
             Report Breakdown
           </Link>
           <Link to="/garages" className="hover:text-gray-300">
             Find Garages
+          </Link>
+          <Link to="/towing" className="hover:text-gray-300">
+            Towing
+          </Link>
+          <Link to="/premium" className="hover:text-gray-300">
+            Premium
+          </Link>
+          <Link to="/emergency" className="hover:text-gray-300">
+            Emergency SOS
           </Link>
           <Link to="/community" className="hover:text-gray-300">
             Community
@@ -70,7 +77,6 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Mobile Menu Button */}
         <div className="md:hidden">
           <Button 
             variant="ghost" 
@@ -83,7 +89,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
       {mobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-trust p-4 shadow-lg">
           <div className="flex flex-col space-y-3">
@@ -100,6 +105,27 @@ const Navbar = () => {
               onClick={() => setMobileMenuOpen(false)}
             >
               Find Garages
+            </Link>
+            <Link 
+              to="/towing" 
+              className="hover:bg-blue-900 p-2 rounded"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Towing
+            </Link>
+            <Link 
+              to="/premium" 
+              className="hover:bg-blue-900 p-2 rounded"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Premium
+            </Link>
+            <Link 
+              to="/emergency" 
+              className="hover:bg-blue-900 p-2 rounded"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Emergency SOS
             </Link>
             <Link 
               to="/community" 
