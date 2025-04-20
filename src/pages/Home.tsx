@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useApp } from "@/contexts/AppContext";
-import { Truck, MapPin, Search, Tool, Clock, Users, Shield } from "lucide-react";
+import { Truck, MapPin, Search, Wrench, Clock, Users, Shield } from "lucide-react";
 
 const Home = () => {
   const { user } = useApp();
@@ -49,7 +49,7 @@ const Home = () => {
                   <MapPin size={24} />
                 </div>
                 <div className="absolute bottom-0 left-0 bg-available text-white rounded-full p-4 shadow-lg">
-                  <Tool size={24} />
+                  <Wrench size={24} />
                 </div>
               </div>
             </div>
@@ -85,7 +85,7 @@ const Home = () => {
             
             <div className="bg-white p-6 rounded-lg shadow-md text-center">
               <div className="bg-trust/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                <Tool size={28} className="text-trust" />
+                <Wrench size={28} className="text-trust" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Get Back on the Road</h3>
               <p className="text-gray-600">

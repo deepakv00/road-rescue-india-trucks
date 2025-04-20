@@ -21,6 +21,8 @@ import {
   AlertCircle,
   ArrowDown,
   ArrowUp,
+  Truck,
+  Shield,
 } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
