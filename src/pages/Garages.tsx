@@ -40,7 +40,7 @@ const Garages = () => {
           }
         } else {
           // Fetch from API when online
-          if (vehicleTypeFilter) {
+          if (vehicleTypeFilter && vehicleTypeFilter !== "all") {
             fetchedGarages = await getGaragesByVehicleType(vehicleTypeFilter);
           } else {
             fetchedGarages = await getAllGarages();
@@ -136,7 +136,7 @@ const Garages = () => {
               <SelectValue placeholder="Vehicle Type" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All Types</SelectItem>
+              <SelectItem value="all">All Types</SelectItem>
               <SelectItem value="truck">Truck</SelectItem>
               <SelectItem value="car">Car</SelectItem>
               <SelectItem value="bike">Bike</SelectItem>
@@ -254,3 +254,4 @@ const Garages = () => {
 };
 
 export default Garages;
+
