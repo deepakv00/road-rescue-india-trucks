@@ -1,14 +1,14 @@
 
 import React, { ReactNode } from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
 interface StaggeredChildrenProps {
   children: ReactNode;
   className?: string;
   staggerDelay?: number;
   containerAnimation?: {
-    hidden: object;
-    visible: object;
+    hidden: any;
+    visible: any;
   };
 }
 
@@ -23,7 +23,7 @@ export const StaggeredChildren = ({
 }: StaggeredChildrenProps) => {
   const childrenArray = React.Children.toArray(children);
   
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: containerAnimation.hidden,
     visible: {
       ...containerAnimation.visible,
@@ -34,7 +34,7 @@ export const StaggeredChildren = ({
     }
   };
   
-  const childVariants = {
+  const childVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
