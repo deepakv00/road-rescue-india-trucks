@@ -1,8 +1,7 @@
-
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CircleAlert, Phone, Flag, Truck, MapPin, Shield } from "lucide-react";
+import { CircleAlert, Phone, Flag, Truck, MapPin, Shield, Check } from "lucide-react";
 
 const EmergencySOS = () => {
   const emergencyContacts = [
