@@ -1,9 +1,7 @@
-
 import { useState, useEffect } from "react";
 import { useApp } from "@/contexts/AppContext";
 import { toast } from "sonner";
-import { getAllPosts, ForumPost, createPost } from "@/lib/community";
-import { Card, CardContent } from "@/components/ui/card";
+import { getAllPosts, ForumPost as ForumPostType, createPost } from "@/lib/community";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -16,10 +14,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Users, MessageSquare, Heart, Calendar, Tag, AlertTriangle, Loader2 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import { format } from "date-fns";
+import { MessageSquare, AlertTriangle, Loader2 } from "lucide-react";
+import { ForumPost } from "@/components/community/ForumPost";
+import { StaggeredChildren } from "@/components/ui/staggered-children";
 
 const Community = () => {
   const { user, isOffline } = useApp();
@@ -82,6 +79,14 @@ const Community = () => {
       console.error("Error creating post:", error);
       toast.error("Failed to create post. Please try again.");
     }
+  };
+
+  const handleCommentClick = () => {
+    if (!user) {
+      toast.error("Please login to comment on posts");
+      return;
+    }
+    toast.info("Comment feature coming soon!");
   };
 
   const formatDate = (dateString: string) => {
@@ -178,76 +183,15 @@ const Community = () => {
           <Loader2 size={30} className="animate-spin text-trust" />
         </div>
       ) : posts.length > 0 ? (
-        <div className="space-y-6">
+        <StaggeredChildren className="space-y-6">
           {posts.map((post) => (
-            <Card key={post.id}>
-              <CardContent className="p-6">
-                <div className="flex items-start justify-between">
-                  <h2 className="text-xl font-semibold">{post.title}</h2>
-                  <div className="flex items-center text-gray-500">
-                    <Calendar size={14} className="mr-1" />
-                    <span className="text-sm">{formatDate(post.createdAt)}</span>
-                  </div>
-                </div>
-                
-                <div className="flex items-center mt-2 text-sm text-gray-500">
-                  <div className="flex items-center">
-                    <Users size={14} className="mr-1" />
-                    <span>{post.userName}</span>
-                  </div>
-                  
-                  <div className="flex items-center ml-4">
-                    <Heart size={14} className="mr-1" />
-                    <span>{post.likes} likes</span>
-                  </div>
-                  
-                  <div className="flex items-center ml-4">
-                    <MessageSquare size={14} className="mr-1" />
-                    <span>{post.comments.length} comments</span>
-                  </div>
-                </div>
-                
-                <p className="mt-4 text-gray-700">{post.content}</p>
-                
-                {post.tags.length > 0 && (
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {post.tags.map((tag, i) => (
-                      <Badge key={i} variant="secondary" className="flex items-center">
-                        <Tag size={12} className="mr-1" />
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                )}
-                
-                {post.comments.length > 0 && (
-                  <div className="mt-6">
-                    <Separator className="mb-4" />
-                    <h3 className="text-sm font-medium mb-2">Comments</h3>
-                    <div className="space-y-3">
-                      {post.comments.map((comment) => (
-                        <div key={comment.id} className="bg-gray-50 p-3 rounded-md">
-                          <div className="flex items-center justify-between mb-1">
-                            <span className="text-sm font-medium">{comment.userName}</span>
-                            <span className="text-xs text-gray-500">{formatDate(comment.createdAt)}</span>
-                          </div>
-                          <p className="text-sm">{comment.content}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-                
-                <div className="mt-4 pt-4 border-t flex justify-end">
-                  <Button variant="outline" size="sm">
-                    <MessageSquare size={14} className="mr-1" />
-                    Comment
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+            <ForumPost
+              key={post.id}
+              post={post}
+              onComment={handleCommentClick}
+            />
           ))}
-        </div>
+        </StaggeredChildren>
       ) : (
         <div className="text-center py-20 bg-gray-50 rounded-lg">
           <p className="text-gray-500 mb-4">No posts yet. Be the first to create a post!</p>
